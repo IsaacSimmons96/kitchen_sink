@@ -1,4 +1,4 @@
-# Kitchen Sink
+# Kitchen Sink :shower:
 
 A GUI library that has everything but the kitchen sink!
 
