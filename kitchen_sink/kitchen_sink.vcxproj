@@ -175,6 +175,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="User Interface\checkbox.h" />
     <ClInclude Include="Headers\console.h" />
     <ClInclude Include="Headers\typedefs.h" />
     <ClInclude Include="pch.h" />
@@ -188,6 +189,7 @@
     <ClInclude Include="User Interface\ui_object.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="User Interface\checkbox.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

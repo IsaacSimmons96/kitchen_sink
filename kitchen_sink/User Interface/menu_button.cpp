@@ -25,8 +25,8 @@ void MENU_VALUE_BUTTON::handle_mouse_release( sf::Mouse::Button button_type )
 {
 	switch( button_type )
 	{
-		case sf::Mouse::Left:
-		case sf::Mouse::Middle:
+		case sf::Mouse::Button::Left:
+		case sf::Mouse::Button::Middle:
 		{
 			BUTTON::handle_mouse_release( button_type );
 			if( m_parent_menu_button )
@@ -53,7 +53,7 @@ MENU_BUTTON::MENU_BUTTON( const float width, const float height, sf::Font* font,
 //-----------------------------------------------------------------------------------------
 MENU_BUTTON::~MENU_BUTTON()
 {
-	for( auto object : m_menu_buttons )
+	for( auto& object : m_menu_buttons )
 	{
 		delete object;
 	}
@@ -116,14 +116,14 @@ void MENU_BUTTON::handle_mouse_click( sf::Mouse::Button button_type, sf::RenderW
 {
 	switch( button_type )
 	{
-		case sf::Mouse::Left:
-		case sf::Mouse::Middle:
+	case sf::Mouse::Button::Left:
+		case sf::Mouse::Button::Middle:
 		{
 			CONSOLE::print_to_console( "menu button held" );
 			m_clicked = true;
 			break;
 		}
-		case sf::Mouse::Right:
+		case sf::Mouse::Button::Right:
 			break;
 		default:
 			break;
@@ -137,8 +137,8 @@ void MENU_BUTTON::handle_mouse_release( sf::Mouse::Button button_type )
 {
 	switch( button_type )
 	{
-		case sf::Mouse::Left:
-		case sf::Mouse::Middle:
+		case sf::Mouse::Button::Left:
+		case sf::Mouse::Button::Middle:
 		{
 			CONSOLE::print_to_console( "menu button click" );
 			m_button_rectangle.setFillColor( m_hover_colour );
@@ -154,7 +154,7 @@ void MENU_BUTTON::handle_mouse_release( sf::Mouse::Button button_type )
 			m_clicked = false;
 			break;
 		}
-		case sf::Mouse::Right:
+		case sf::Mouse::Button::Right:
 			break;
 		default:
 			break;
@@ -312,7 +312,7 @@ void MENU_BUTTON::set_values( const std::vector<std::pair<std::string, uint32_t>
 	//if we are setting new values for this and we already has existing values, we'll need to dispose of the objects we had!
 	if( m_menu_buttons.size() > 0 )
 	{
-		for( auto object : m_menu_buttons )
+		for( auto& object : m_menu_buttons )
 		{
 			delete object;
 		}

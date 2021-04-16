@@ -33,7 +33,7 @@ BOX::BOX( float x_pos, float y_pos, float width, float height, sf::RenderWindow&
 //-----------------------------------------------------------------------------------------
 BOX::~BOX()
 {
-	for( auto object : m_embedded_objects )
+	for( auto& object : m_embedded_objects )
 	{
 		delete object;
 	}

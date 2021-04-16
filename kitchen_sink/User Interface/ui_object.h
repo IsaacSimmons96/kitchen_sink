@@ -21,18 +21,20 @@ enum class MOUSE_DRAG_DIRECTION : uint8_t
 class UI_OBJECT
 {
 public:
-	virtual UI_OBJECT*	get_if_mouse_over( sf::RenderWindow &window ) = 0;
-	virtual void		draw( sf::RenderWindow &window ) = 0;
+	virtual ~UI_OBJECT(){};
+
+	virtual UI_OBJECT*	get_if_mouse_over( sf::RenderWindow& window ) = 0;
+	virtual void		draw( sf::RenderWindow& window ) = 0;
 
 	//POSITION
-	virtual void	set_position( const float &x, const float &y ) = 0;
+	virtual void	set_position( const float& x, const float& y ) = 0;
 	virtual float	get_x_position() const = 0;
 	virtual float	get_y_position() const = 0;
 
 	virtual float	get_x_offset() const { return m_x_offset; };
 	virtual float	get_y_offset() const { return m_y_offset; };
 
-	virtual void	set_offsets( const float &x_off, const float &y_off )
+	virtual void	set_offsets( const float& x_off, const float& y_off )
 	{
 		m_x_offset = x_off;
 		m_y_offset = y_off;
@@ -50,7 +52,7 @@ public:
 
 	virtual	LAYOUT_ATTACHMENT get_attachment() { return m_layout_attachment; };
 	virtual void	set_attachment( LAYOUT_ATTACHMENT attachment_in );
-	virtual void	clear_attachment( LAYOUT_ATTACHMENT attachment_in );	
+	virtual void	clear_attachment( LAYOUT_ATTACHMENT attachment_in );
 
 	//VISIBILITY
 	virtual void	hide();
@@ -65,12 +67,12 @@ public:
 
 	virtual void	handle_mouse_click( sf::Mouse::Button button_type, sf::RenderWindow& window ) {};
 	virtual void	handle_mouse_release( sf::Mouse::Button button_type ) {};
-	virtual void	handle_mouse_drag( sf::RenderWindow & window )  {};
+	virtual void	handle_mouse_drag( sf::RenderWindow& window )  {};
 	virtual void	handle_mouse_enter() {};
 	virtual void	handle_mouse_leave() {};
 	virtual void	handle_mouse_scroll( float mouse_wheel_direction ) {};
 
-	virtual void	set_can_drag( bool can_drag_in ) { m_can_drag = can_drag_in;  };
+	virtual void	set_can_drag( bool can_drag_in ) { m_can_drag = can_drag_in; };
 	bool			can_drag() { return m_can_drag; };
 
 	//COLOURS

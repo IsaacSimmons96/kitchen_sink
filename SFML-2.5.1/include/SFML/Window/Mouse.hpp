@@ -48,7 +48,7 @@ public:
     /// \brief Mouse buttons
     ///
     ////////////////////////////////////////////////////////////
-    enum Button
+    enum class Button : uint8_t
     {
         Left,       ///< The left mouse button
         Right,      ///< The right mouse button

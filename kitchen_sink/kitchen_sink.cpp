@@ -8,6 +8,7 @@
 #include <windows.h>
 #include "..\..\User Interface\menu_button.h"
 #include "..\..\User Interface\scrolling_box.h"
+#include "..\..\User Interface\checkbox.h"
 
 //------------------------------------------------------------------------------------------------
 // CONSTANTS
@@ -136,9 +137,10 @@ int main()
 
 	sf::RenderWindow window( sf::VideoMode( 1080, 720 ), APPLICATION_WINDOW_TITLE, sf::Style::Close | sf::Style::Titlebar );
 
-	BUTTON* drag_button = new BUTTON( "Drag Button", 200, 200, font, COLOUR::Yellow );
+	/*BUTTON* drag_button = new BUTTON( "Drag Button", 200, 200, font, COLOUR::Yellow );
 	drag_button->set_position( static_cast<float>(window.getSize().x / 2) - drag_button->get_centre_x(), 50 );
 	drag_button->set_can_drag( true );
+	ui_objects.push_back( drag_button );*/
 
 	//SCROLLING_BOX* test_box = new SCROLLING_BOX( 100, 200, 800, 400, window );
 	//test_box->set_debug( true );
@@ -162,7 +164,10 @@ int main()
 	//test_box->embed_object( menu_button, LAYOUT_ATTACHMENT::CENTRE, -200, 0 );
 
 	//ui_objects.push_back( test_box );
-	ui_objects.push_back( drag_button );
+
+	CHECKBOX* check = new CHECKBOX( "Check Box", font );
+	check->set_position( static_cast<float>(window.getSize().x / 2) - check->get_centre_x(), 50 );
+	ui_objects.push_back( check );
 
 	int mouseDelta = 0;
 	while ( window.isOpen() )

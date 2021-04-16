@@ -10,15 +10,15 @@ public:
 	BOX( float x_pos, float y_pos, float width, float height, sf::RenderWindow& window, const COLOUR bg_col = CUSTOM_COLOUR::BACKGROUND );
 	~BOX();
 
-	UI_OBJECT* get_if_mouse_over( sf::RenderWindow &window ) override;
+	UI_OBJECT* get_if_mouse_over( sf::RenderWindow& window ) override;
 
-	void embed_object( UI_OBJECT * object );
-	void embed_object( UI_OBJECT * object, const float &x_offset, const float &y_offset );
-	void embed_object( UI_OBJECT * object, LAYOUT_ATTACHMENT attachment, const float &x_offset, const float &y_offset );
-	void embed_object( UI_OBJECT * object, LAYOUT_ATTACHMENT attachment );
+	void embed_object( UI_OBJECT* object );
+	void embed_object( UI_OBJECT* object, const float& x_offset, const float& y_offset );
+	void embed_object( UI_OBJECT* object, LAYOUT_ATTACHMENT attachment, const float& x_offset, const float& y_offset );
+	void embed_object( UI_OBJECT* object, LAYOUT_ATTACHMENT attachment );
 
-	void draw( sf::RenderWindow &window )	override;
-	void set_position( const float &x, const float &y ) override;
+	void draw( sf::RenderWindow& window )	override;
+	void set_position( const float& x, const float& y ) override;
 	void set_colour( COLOUR colour_in ) override;
 
 	float get_centre_x()	const override;
@@ -30,9 +30,9 @@ public:
 	sf::View* get_view()	const { return m_view_box; };
 
 protected:
-	sf::View*				m_view_box{ nullptr };
+	sf::View* m_view_box{ nullptr };
 
-	void reposition_embedded_object( UI_OBJECT * object );
+	void reposition_embedded_object( UI_OBJECT* object );
 	void position_object_and_embed( UI_OBJECT* object );
 
 	float convert_to_0_to_1_scale( float input, unsigned int window_size );

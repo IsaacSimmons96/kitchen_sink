@@ -14,8 +14,9 @@ public:
 
 	UI_OBJECT* get_if_mouse_over(sf::RenderWindow &window)		override;
 
-	void draw(sf::RenderWindow &window)													override;
-	void handle_mouse_click(sf::Mouse::Button button_type, sf::RenderWindow& window )	override;
+	virtual void draw( sf::RenderWindow& window )	override;
+	virtual void handle_mouse_click(sf::Mouse::Button button_type, sf::RenderWindow& window )	override;
+	
 	void handle_mouse_release(sf::Mouse::Button button_type)							override;
 	void handle_mouse_drag( sf::RenderWindow & window )									override;
 	void handle_mouse_enter()															override;	
@@ -23,7 +24,7 @@ public:
 
 	virtual void set_font(sf::Font* font);
 
-	void set_position(const float &x, const float &y) override;
+	virtual void set_position(const float &x, const float &y) override;
 	float get_x_position() const override;
 	float get_y_position() const override;
 

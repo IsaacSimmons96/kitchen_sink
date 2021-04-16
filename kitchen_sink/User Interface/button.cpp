@@ -91,8 +91,8 @@ void BUTTON::handle_mouse_click( sf::Mouse::Button button_type, sf::RenderWindow
 {
 	switch( button_type )
 	{
-		case sf::Mouse::Left:
-		case sf::Mouse::Middle:
+		case sf::Mouse::Button::Left:
+		case sf::Mouse::Button::Middle:
 		{
 			const sf::Vector2i mouse_pos = sf::Mouse::getPosition( window );
 			const sf::Vector2f world_mouse_pos = window.mapPixelToCoords( mouse_pos );
@@ -102,7 +102,7 @@ void BUTTON::handle_mouse_click( sf::Mouse::Button button_type, sf::RenderWindow
 			m_clicked = true;
 			break;
 		}
-		case sf::Mouse::Right:
+		case sf::Mouse::Button::Right:
 			break;
 		default:
 			break;
@@ -116,15 +116,15 @@ void BUTTON::handle_mouse_release( sf::Mouse::Button button_type )
 {
 	switch( button_type )
 	{
-		case sf::Mouse::Left:
-		case sf::Mouse::Middle:
+	case sf::Mouse::Button::Left:
+	case sf::Mouse::Button::Middle:
 		{
 			CONSOLE::print_to_console( "click" );
 			m_button_rectangle.setFillColor( m_hover_colour );
 			m_clicked = false;
 			break;
 		}
-		case sf::Mouse::Right:
+	case sf::Mouse::Button::Right:
 			break;
 		default:
 			break;
