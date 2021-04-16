@@ -30,11 +30,3 @@
 *.exe
 *.out
 *.app
-
-# VS Debug
-*.idb
-*.tlog
-*.db
-*.opendb
-*.db-wal
-*.db-shm
