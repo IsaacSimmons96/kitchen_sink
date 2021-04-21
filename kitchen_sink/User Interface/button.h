@@ -28,7 +28,6 @@ public:
 	float get_x_position() const override;
 	float get_y_position() const override;
 
-
 	void set_colour(COLOUR colour_in) override;
 	void set_secondary_colour(COLOUR colour_in) override;
 

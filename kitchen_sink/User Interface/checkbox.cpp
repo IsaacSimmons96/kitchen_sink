@@ -3,12 +3,13 @@
 #include "ui_object.h"
 #include "..\Headers\console.h"
 
-CHECKBOX::CHECKBOX( const std::string text , sf::Font* font, const float size /*= 30*/, const COLOUR col, const uint8_t text_size )
-: BUTTON( text, size, size, font, col, text_size )
+CHECKBOX::CHECKBOX( const std::string text, sf::Font* font, const float size /*= 30*/, const COLOUR col, const uint8_t text_size )
+	: BUTTON( text, size, size, font, col, text_size )
 {
-
 	m_button_rectangle.setOutlineColor( COLOUR::Black );
 	m_button_rectangle.setOutlineThickness( 2 );
+	m_checkbox_tick.setFillColor( COLOUR::Blue );
+	m_checkbox_tick_2.setFillColor( COLOUR::Blue );
 }
 
 //-------------------------------------------------------------
@@ -25,6 +26,12 @@ void CHECKBOX::draw( sf::RenderWindow& window )
 
 		window.draw( m_button_rectangle );
 		window.draw( m_button_text );
+
+		if ( m_checked )
+		{
+			window.draw( m_checkbox_tick );
+			window.draw( m_checkbox_tick_2 );
+		}
 	}
 }
 
@@ -39,6 +46,14 @@ void CHECKBOX::set_position( const float& x, const float& y )
 	const float text_x_position = position.x + m_button_rectangle.getGlobalBounds().width + 5;
 	const float text_y_position = (position.y + m_button_rectangle.getGlobalBounds().height / 2) - (m_button_text.getGlobalBounds().height / 2);
 	m_button_text.setPosition( sf::Vector2f( text_x_position, text_y_position ) );
+
+	m_checkbox_tick.setSize( sf::Vector2f( m_button_rectangle.getGlobalBounds().width / 4, 5 ) );
+	m_checkbox_tick.setPosition( sf::Vector2f( position.x + m_button_rectangle.getGlobalBounds().width / 4,  text_y_position ) );
+	//m_checkbox_tick.rotate( 45 );
+
+	m_checkbox_tick_2.setSize( sf::Vector2f( m_button_rectangle.getGlobalBounds().width / 2, 5 ) );
+	m_checkbox_tick_2.setPosition( sf::Vector2f( position.x + m_button_rectangle.getGlobalBounds().width / 2, position.y + m_button_rectangle.getGlobalBounds().width / 2 ) );
+	//m_checkbox_tick_2.rotate( -45 );
 }
 
 //-------------------------------------------------------------
@@ -46,21 +61,16 @@ void CHECKBOX::set_position( const float& x, const float& y )
 //-------------------------------------------------------------
 void CHECKBOX::handle_mouse_click( sf::Mouse::Button button_type, sf::RenderWindow& window )
 {
+	BUTTON::handle_mouse_click( button_type, window );
+
 	switch ( button_type )
 	{
 	case sf::Mouse::Button::Left:
 	case sf::Mouse::Button::Middle:
 		{
-			const sf::Vector2i mouse_pos = sf::Mouse::getPosition( window );
-			const sf::Vector2f world_mouse_pos = window.mapPixelToCoords( mouse_pos );
-			m_last_mouse_position = world_mouse_pos;
-
-			CONSOLE::print_to_console( "held" );
-			m_clicked = true;
+			m_checked = !m_checked;
 			break;
 		}
-	case sf::Mouse::Button::Right:
-		break;
 	default:
 		break;
 	}

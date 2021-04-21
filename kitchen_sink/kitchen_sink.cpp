@@ -165,7 +165,7 @@ int main()
 
 	//ui_objects.push_back( test_box );
 
-	CHECKBOX* check = new CHECKBOX( "Check Box", font );
+	CHECKBOX* check = new CHECKBOX( "Check Box", font, 100 );
 	check->set_position( static_cast<float>(window.getSize().x / 2) - check->get_centre_x(), 50 );
 	ui_objects.push_back( check );
 

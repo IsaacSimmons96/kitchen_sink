@@ -8,7 +8,15 @@ public:
 
 	void draw( sf::RenderWindow& window ) override;
 	void handle_mouse_click( sf::Mouse::Button button_type, sf::RenderWindow& window )	override;
-
 	void set_position( const float& x, const float& y ) override;
+
+	bool is_checked() const { return m_checked; };
+	void set_checked( bool new_value ) { m_checked = new_value; };
+
+private:
+	sf::RectangleShape m_checkbox_tick;
+	sf::RectangleShape m_checkbox_tick_2;
+
+	bool m_checked{ true };
 };
 
