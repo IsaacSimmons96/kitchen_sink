@@ -52,20 +52,23 @@ void SCROLL_BUTTON::handle_mouse_drag( sf::RenderWindow & window )
 SCROLLING_BOX::SCROLLING_BOX( float x_pos, float y_pos, float width, float height, sf::RenderWindow& window, const COLOUR bg_col /*= CUSTOM_COLOUR::BACKGROUND*/ )
 	: BOX( x_pos, y_pos, width, height, window, bg_col )
 {
-	m_max_scroll_value = 100 - SCROLL_INCEREMENT_VALUE;
+	m_max_scroll_value = 3000 - SCROLL_INCEREMENT_VALUE;
 }
 
 void SCROLLING_BOX::handle_drag_scroll( MOUSE_DRAG_DIRECTION direction, int16_t scrolled_value )
 {
+	uint8_t multiplier = std::round((m_max_scroll_value + SCROLL_INCEREMENT_VALUE) / m_box_height);
+	int16_t scaled_scrolled_value = m_box_height - m_max_scroll_value <= 0 ? scrolled_value * multiplier : scrolled_value;
 	switch( direction )
 	{
 		case MOUSE_DRAG_DIRECTION::DRAGGING_DOWN:
 		{
-			if( m_scroll_value < m_max_scroll_value )
+			if( m_scroll_value < m_box_height - SCROLL_INCEREMENT_VALUE )
 			{
-				const auto new_to_scroll_value = std::clamp( m_scroll_value + scrolled_value, 0, static_cast<int>( m_max_scroll_value ) );
-				m_view_box->move( 0, scrolled_value );
-				m_scroll_value = new_to_scroll_value;
+				const auto new_to_scroll_value = std::clamp( m_scroll_value + scrolled_value, 0, static_cast<int>(m_box_height - SCROLL_INCEREMENT_VALUE) );
+				m_view_box->move( 0, scaled_scrolled_value );
+				m_viewport_scroll_value += scaled_scrolled_value;
+				m_scroll_value = new_to_scroll_value;				
 			}
 			break;
 		}
@@ -75,12 +78,15 @@ void SCROLLING_BOX::handle_drag_scroll( MOUSE_DRAG_DIRECTION direction, int16_t 
 			if( m_scroll_value > 0 )
 			{
 				const auto new_to_scroll_value = std::clamp( m_scroll_value - std::abs( scrolled_value ), 0, static_cast<int>( m_max_scroll_value ) );
-				m_view_box->move( 0.0f, (float)-std::abs( scrolled_value ) );
+				m_view_box->move( 0.0f, (float)-std::abs( scaled_scrolled_value ) );
+				m_viewport_scroll_value -= scaled_scrolled_value;
 				m_scroll_value = new_to_scroll_value;
 			}
 			break;			
 		}
 	}
+
+	CONSOLE::print_to_console( "m_viewport_scroll_value :" + std::to_string( m_viewport_scroll_value ) );
 
 	if( m_scroll_button )
 	{
@@ -140,7 +146,7 @@ void SCROLLING_BOX::draw( sf::RenderWindow & window )
 
 	if( !m_scroll_button )
 	{
-		const auto scroll_bar_button_height = m_box_height - m_max_scroll_value == 0 ? SCROLL_INCEREMENT_VALUE : m_box_height - m_max_scroll_value;
+		const auto scroll_bar_button_height = m_box_height - m_max_scroll_value <= 0 ? SCROLL_INCEREMENT_VALUE : m_box_height - m_max_scroll_value;
 		m_scroll_button = new SCROLL_BUTTON( this, scroll_bar_button_height, CUSTOM_COLOUR::SCROLL_BUTTON_GREY );
 		m_scroll_button->set_position( m_box_width + m_box_x_pos, m_box_y_pos + m_scroll_value );
 	}

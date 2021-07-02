@@ -15,7 +15,6 @@ public:
 
 private:
 	sf::RectangleShape m_checkbox_tick;
-	sf::RectangleShape m_checkbox_tick_2;
 
 	bool m_checked{ true };
 };

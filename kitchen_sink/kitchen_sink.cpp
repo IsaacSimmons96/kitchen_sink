@@ -142,14 +142,15 @@ int main()
 	drag_button->set_can_drag( true );
 	ui_objects.push_back( drag_button );*/
 
-	//SCROLLING_BOX* test_box = new SCROLLING_BOX( 100, 200, 800, 400, window );
-	//test_box->set_debug( true );
+	SCROLLING_BOX* test_box = new SCROLLING_BOX( 100, 200, 800, 400, window );
+	test_box->set_debug( true );
 
-	//BUTTON* test_button3 = new BUTTON( "Button 3", 150, 80, font, COLOUR::Cyan );
-	//test_box->embed_object( test_button3, LAYOUT_ATTACHMENT::TOP_LEFT, 100, 0 );
+	BUTTON* test_button3 = new BUTTON( "Button 3", 150, 80, font, COLOUR::Cyan );
+	test_box->embed_object( test_button3, LAYOUT_ATTACHMENT::TOP_LEFT, 200, 0 );
 
-	//BUTTON* test_button4 = new BUTTON( "Button 4", 150, 80, font, COLOUR::Cyan );
-	//test_box->embed_object( test_button4, LAYOUT_ATTACHMENT::TOP_LEFT, 500, 600 );
+	BUTTON* test_button4 = new BUTTON( "Button 4", 150, 80, font, COLOUR::Blue );
+	test_button4->set_position( 100, 3400 );
+	test_box->embed_object( test_button4);
 
 	/*MENU_BUTTON* menu_button = new MENU_BUTTON( 150, 80, font, CUSTOM_COLOUR::SKYPE );
 	menu_button->set_font( font );
@@ -163,9 +164,9 @@ int main()
 
 	//test_box->embed_object( menu_button, LAYOUT_ATTACHMENT::CENTRE, -200, 0 );
 
-	//ui_objects.push_back( test_box );
+	ui_objects.push_back( test_box );
 
-	CHECKBOX* check = new CHECKBOX( "Check Box", font, 100 );
+	CHECKBOX* check = new CHECKBOX( "Check Box", font, 25 );
 	check->set_position( static_cast<float>(window.getSize().x / 2) - check->get_centre_x(), 50 );
 	ui_objects.push_back( check );
 

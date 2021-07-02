@@ -9,7 +9,6 @@ CHECKBOX::CHECKBOX( const std::string text, sf::Font* font, const float size /*=
 	m_button_rectangle.setOutlineColor( COLOUR::Black );
 	m_button_rectangle.setOutlineThickness( 2 );
 	m_checkbox_tick.setFillColor( COLOUR::Blue );
-	m_checkbox_tick_2.setFillColor( COLOUR::Blue );
 }
 
 //-------------------------------------------------------------
@@ -30,7 +29,6 @@ void CHECKBOX::draw( sf::RenderWindow& window )
 		if ( m_checked )
 		{
 			window.draw( m_checkbox_tick );
-			window.draw( m_checkbox_tick_2 );
 		}
 	}
 }
@@ -47,13 +45,8 @@ void CHECKBOX::set_position( const float& x, const float& y )
 	const float text_y_position = (position.y + m_button_rectangle.getGlobalBounds().height / 2) - (m_button_text.getGlobalBounds().height / 2);
 	m_button_text.setPosition( sf::Vector2f( text_x_position, text_y_position ) );
 
-	m_checkbox_tick.setSize( sf::Vector2f( m_button_rectangle.getGlobalBounds().width / 4, 5 ) );
-	m_checkbox_tick.setPosition( sf::Vector2f( position.x + m_button_rectangle.getGlobalBounds().width / 4,  text_y_position ) );
-	//m_checkbox_tick.rotate( 45 );
-
-	m_checkbox_tick_2.setSize( sf::Vector2f( m_button_rectangle.getGlobalBounds().width / 2, 5 ) );
-	m_checkbox_tick_2.setPosition( sf::Vector2f( position.x + m_button_rectangle.getGlobalBounds().width / 2, position.y + m_button_rectangle.getGlobalBounds().width / 2 ) );
-	//m_checkbox_tick_2.rotate( -45 );
+	m_checkbox_tick.setSize( sf::Vector2f( m_button_rectangle.getGlobalBounds().width / 2, m_button_rectangle.getGlobalBounds().height / 2 ) );
+	m_checkbox_tick.setPosition( sf::Vector2f( position.x + m_button_rectangle.getGlobalBounds().width / 4, position.y + m_button_rectangle.getGlobalBounds().height / 4 ) );
 }
 
 //-------------------------------------------------------------
